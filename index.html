@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frame Layout with CSS</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        height: 100vh;
+      }
+
+      /* 3-row layout */
+      .page {
+        display: grid;
+        grid-template-rows: 80px 50px 1fr;
+        height: 100vh;
+        border: 2px solid #333;
+      }
+
+      /* Row 1: 2 columns (logo + header) */
+      .row1 {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        border-bottom: 2px solid #333;
+      }
+
+      .logo-cell {
+        border-right: 2px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f0f0f0;
+      }
+
+      .logo-cell img {
+        max-height: 60px;
+        max-width: 100%;
+      }
+
+      .header-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e0e0e0;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      /* Row 2: 5/6 columns of links */
+      .row2 {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        border-bottom: 2px solid #333;
+        background-color: #f9f9f9;
+      }
+
+      .nav-link {
+        border-right: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-link:last-child {
+        border-right: none;
+      }
+
+      .nav-link a {
+        text-decoration: none;
+        color: #0066cc;
+      }
+
+      /* Row 3: 2 columns (services + content frame) */
+      .row3 {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        height: 100%;
+      }
+
+      .services-cell {
+        border-right: 2px solid #333;
+        padding: 10px;
+        background-color: #f5f5f5;
+        overflow-y: auto;
+      }
+
+      .services-cell h3 {
+        margin-bottom: 10px;
+      }
+
+      .services-cell a {
+        display: block;
+        margin-bottom: 6px;
+        text-decoration: none;
+        color: #0066cc;
+      }
+
+      .content-frame {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- Row 1: Logo + header -->
+      <div class="row1">
+        <div class="logo-cell">
+          <!-- Replace logo.png with your logo file if available -->
+          <img src="logo.png" alt="Website Logo" />
+        </div>
+        <div class="header-cell">Welcome to Our Website</div>
+      </div>
+
+      <!-- Row 2: Navigation links (load into bottom-right frame) -->
+      <div class="row2">
+        <div class="nav-link">
+          <a href="pages/home.html" target="contentFrame">Home</a>
+        </div>
+        <div class="nav-link">
+          <a href="pages/login.html" target="contentFrame">Login</a>
+        </div>
+        <div class="nav-link">
+          <a href="pages/registration.html" target="contentFrame">Registration</a>
+        </div>
+        <div class="nav-link">
+          <a href="pages/catalogue.html" target="contentFrame">Catalogue</a>
+        </div>
+        <div class="nav-link">
+          <a href="pages/cart.html" target="contentFrame">Cart</a>
+        </div>
+        <div class="nav-link">
+          <a href="pages/contact.html" target="contentFrame">Contact Us</a>
+        </div>
+      </div>
+
+      <!-- Row 3: Services (left) + content frame (right) -->
+      <div class="row3">
+        <div class="services-cell">
+          <h3>Services</h3>
+          <a href="pages/service1.html" target="contentFrame">Service 1</a>
+          <a href="pages/service2.html" target="contentFrame">Service 2</a>
+          <a href="pages/service3.html" target="contentFrame">Service 3</a>
+          <a href="pages/service4.html" target="contentFrame">Service 4</a>
+        </div>
+        <!-- Bottom-right frame: shows description / pages -->
+        <iframe
+          class="content-frame"
+          name="contentFrame"
+          src="pages/home.html"
+          title="Content frame"
+        ></iframe>
+      </div>
+    </div>
+  </body>
+</html>
